@@ -5,12 +5,17 @@ Se realizara un programa en Python que simule un esquema de comunicación con lo
 - Fuente de información
 - Transmisor
 - Canal
-- Receptor 
+- Receptor
 - Destino de información
 
 En esta simulacion agregaremos RUIDO artificialmete para ver como cambian los resultados al final.
 
 ---
+
+> ### *NOTA:* **Algunas partes del codigo fueron generados con ayuda de [ChatGTP](https://chat.openai.com/). Para identificar las partes hechas por la IA se agregara la palabra "ChatGTP" a los codigos para poder identificarlo.**
+
+---
+
 
 #### **1. Fuente de información**
 El primer paso en nuestro esquema de comunicacion es la fuente de infomacion, osea el mensaje.
@@ -20,6 +25,21 @@ El primer paso en nuestro esquema de comunicacion es la fuente de infomacion, os
 - Luego, se implementará una función para leer y extraer el contenido de este archivo.
 
 Hay que tener en cuenta que para crear el archivo "fuente.txt" manualmente, podemos utilizar un editor de texto y guardarlo en la misma ubicación donde se encuentra el script de Python. Luego, podemos usar el código en Python para leerlo.
+
+
+> ***ChatGTP***
+
+```
+# Se uso a chatGPT para generar la funcion para poder leer un archivo de texto.
+def leer_archivo(nombre_archivo):
+    try:
+        with open(nombre_archivo, 'r') as archivo:
+            contenido = archivo.read()
+            return contenido
+    except FileNotFoundError:
+        print(f"El archivo '{nombre_archivo}' no fue encontrado.")
+        return ""
+```
 
 #### **2. Transmisor**
 Es el emisor técnico, esto es el que transforma el mensaje emitido en un conjunto de señales o códigos que serán adecuados al canal encargado de transmitirlos.
@@ -41,13 +61,13 @@ En la etapa de la "Fuente de Información", hemos convertido el contenido del ar
 Para llevar a cabo la conversión a una representación binaria, podemos 
 agregar una función adicional para realizar esta conversión. Por ejemplo:
 
+> ***ChatGTP***
+
 ```
-def ascii_a_binario(ascii_codigos):
-    binario = ''.join(format(ord(char), '08b') for char in ascii_codigos)
-    return binario
-
-mensaje_transmitido = ascii_a_binario(contenido_fuente)
-
+# Se uso a chatGPT para generar la funcion texto_a_ascii.
+def texto_a_ascii(texto):
+    ascii_codigos = [ord(char) for char in texto]
+    return ascii_codigos
 ```
 #### **3. Canal**
 Es el medio técnico que debe transportar las señales codificadas por el transmisor. Este medio será, en este caso la simulación de, cables, fibra óptica o por aire.
@@ -80,7 +100,7 @@ def agregar_ruido(mensaje, probabilidad):
 ```
 #### **4. Receptor**
 
-La actividad del receptor es la inversa de la del transmisor. Su función consiste en decodificar el mensaje transmitido y conducirlo por el canal, para transcribirlo en un lenguaje comprensible por el verdadero receptor que es llamado destinatario. 
+La actividad del receptor es la inversa de la del transmisor. Su función consiste en decodificar el mensaje transmitido y conducirlo por el canal, para transcribirlo en un lenguaje comprensible por el verdadero receptor que es llamado destinatario.
 
 1. Recepción del Mensaje Transmitido:
 
@@ -89,8 +109,22 @@ El receptor comienza recibiendo el mensaje transmitido. En el código existente,
 2. Decodificación:
 
 El receptor decodifica la señal para obtener la información en su forma original. Si en el "Transmisor" convertimos la información a representación binaria, debemos realizar la conversión inversa para obtener los códigos ASCII o el formato original de los datos.
+> ***ChatGTP***
 
-#### **5. Destino de información**D
+
+```
+# Se uso a chatGPT para generar la funcion binario_a_ascii.
+def binario_a_ascii(binario):
+    # Divide la cadena binaria en segmentos de 8 bits y conviértelos a valores ASCII
+    ascii_codigos = [int(binario[i:i+8], 2) for i in range(0, len(binario), 8)]
+
+    # Convierte los códigos ASCII a caracteres y forma el mensaje de texto
+    mensaje_texto = "".join(chr(codigo) for codigo in ascii_codigos)
+
+    return mensaje_texto
+```
+
+#### **5. Destino de información**
 
 El "Destino de Información" o "Destinatario," simplemente recibe el mensaje procesado y lo utiliza según su aplicación específica. En este caso el destinatario simplemente imprimirá el mensaje en su forma original (texto ASCII).
 
