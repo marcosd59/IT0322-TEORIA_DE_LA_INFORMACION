@@ -9,11 +9,6 @@ Se realizara un programa en Python que simule un esquema de comunicación con lo
 - Destino de información
 
 En esta simulacion agregaremos RUIDO artificialmete para ver como cambian los resultados al final.
-
----
-
-> ### *NOTA:* **Algunas partes del codigo fueron generados con ayuda de [ChatGTP](https://chat.openai.com/). Para identificar las partes hechas por la IA se agregara la palabra "ChatGTP" a los codigos para poder identificarlo.**
-
 ---
 
 
@@ -58,13 +53,9 @@ En la etapa de la "Fuente de Información", hemos convertido el contenido del ar
 
 3. Convertir a representación binaria (Adicional):
 
-Para llevar a cabo la conversión a una representación binaria, podemos 
-agregar una función adicional para realizar esta conversión. Por ejemplo:
-
-> ***ChatGTP***
+Para llevar a cabo la conversión a una representación binaria, podemos agregar una función adicional para realizar esta conversión. Por ejemplo:
 
 ```
-# Se uso a chatGPT para generar la funcion texto_a_ascii.
 def texto_a_ascii(texto):
     ascii_codigos = [ord(char) for char in texto]
     return ascii_codigos
@@ -109,11 +100,8 @@ El receptor comienza recibiendo el mensaje transmitido. En el código existente,
 2. Decodificación:
 
 El receptor decodifica la señal para obtener la información en su forma original. Si en el "Transmisor" convertimos la información a representación binaria, debemos realizar la conversión inversa para obtener los códigos ASCII o el formato original de los datos.
-> ***ChatGTP***
-
 
 ```
-# Se uso a chatGPT para generar la funcion binario_a_ascii.
 def binario_a_ascii(binario):
     # Divide la cadena binaria en segmentos de 8 bits y conviértelos a valores ASCII
     ascii_codigos = [int(binario[i:i+8], 2) for i in range(0, len(binario), 8)]
