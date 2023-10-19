@@ -2,13 +2,14 @@
 
 Se realizara un programa en Python que simule un esquema de comunicación con los sigueintes puntos:
 
-- Fuente de información
-- Transmisor
-- Canal
-- Receptor
-- Destino de información
+1. **Fuente de información:** Selecciona el mensaje deseado de un conjunto de mensajes posibles.
 
-En esta simulacion agregaremos RUIDO artificialmete para ver como cambian los resultados al final.
+2. **Transmisor:** Transforma o codifica esta información en una forma apropiada al canal.
+3. **Canal:** Medio a través del cual las señales son transmitidas al punto de recepción.
+4. **Receptor:** Decodifica o vuelve a transformar la señal transmitida en el mensaje original o en una aproximación de este haciéndolo llegar a su destino.
+5. **Destino de información:** Muestra el mensaje decodificado.
+
+#### En esta simulacion agregaremos "ruido" de manera artificial para ver como cambian los resultados al final.
 ---
 
 
@@ -20,9 +21,6 @@ El primer paso en nuestro esquema de comunicacion es la fuente de infomacion, os
 - Luego, se implementará una función para leer y extraer el contenido de este archivo.
 
 Hay que tener en cuenta que para crear el archivo "fuente.txt" manualmente, podemos utilizar un editor de texto y guardarlo en la misma ubicación donde se encuentra el script de Python. Luego, podemos usar el código en Python para leerlo.
-
-
-> ***ChatGTP***
 
 ```
 # Se uso a chatGPT para generar la funcion para poder leer un archivo de texto.
@@ -133,3 +131,7 @@ print("Mensaje en el Destinatario: ", mensaje_texto)
 - Luego, convertimos la representación binaria nuevamente a texto ASCII. Suponemos que el mensaje original estaba en formato ASCII y, por lo tanto, cada conjunto de 8 bits se interpreta como un carácter ASCII. Usamos chr para convertir estos valores numéricos en caracteres ASCII.
 
 - Finalmente, el mensaje en su forma original se imprime en el destinatario.
+
+# **Codificacion Huffman**
+
+La codificación Huffman es un método ampliamente utilizado en la compresión de datos. Se utiliza para codificar un texto en binario, utilizando para cada letra un número de bits en función del número de veces que aparece la letra: cuanto más aparece la letra, menor es el número de bits. Por lo tanto, el número total de bits utilizados para codificar el texto se reduce en comparación con la codificación ASCII estándar que utiliza ocho bits para cada letra.
