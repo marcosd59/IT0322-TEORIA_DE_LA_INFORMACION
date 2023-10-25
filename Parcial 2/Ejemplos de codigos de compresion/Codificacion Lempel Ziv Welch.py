@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#https://github.com/kocsob/lempel-ziv-welch/tree/master
 
 __author__ = "Balazs Kocso"
 __version__ = "1.2"

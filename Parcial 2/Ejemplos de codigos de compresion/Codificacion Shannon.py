@@ -1,6 +1,8 @@
 # https://github.com/saylenty/shannon_fano/tree/master
+
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+
 from functools import total_ordering
 
 __author__ = 'Saylenty'

@@ -2,9 +2,7 @@
 
 __author__ = "NabilLDZ"
 
-#text = input("Masukkan Text:")
-
-text = "WWWWBBBWWWWBWBW"
+text = input("Masukkan Text: ")
 
 def encode_message(text):
    encoded_string = ""
