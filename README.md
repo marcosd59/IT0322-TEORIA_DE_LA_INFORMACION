@@ -8,7 +8,6 @@
 
 **Profesor: Carlos Francisco Paz Cuevas.**
 
----
 ## **Esquema de comunicación**
 
 Se realizara un programa en Python que simule un esquema de comunicación con los sigueintes puntos:
@@ -19,7 +18,7 @@ Se realizara un programa en Python que simule un esquema de comunicación con lo
 3. **Canal:** Medio a través del cual las señales son transmitidas al punto de recepción.
 4. **Receptor:** Decodifica la señal transmitida en el mensaje original haciéndolo llegar a su destino.
 5. **Destino de información:** Muestra el mensaje decodificado.
----
+
 # **UNIDAD I. INTRODUCCIÓN A LA TEORÍA DE LA INFORMACIÓN**
 
 #### **1. Fuente de información**
@@ -119,7 +118,7 @@ print("Mensaje en el Destinatario: ", mensaje_texto)
 
 El "mensaje_recibido" es el mensaje que ha sido procesado y que ahora se encuentra en su forma recuperada después de haber pasado por el "Receptor."
 
----
+
 
 # **UNIDAD II. ENTROPÍA, PROBABILIDAD E INFERENCIA**
 
@@ -187,7 +186,7 @@ print(f"Entropía con umbral: {umbral}")
 print(f"Probabilidad: {pk} \n")
 print(f"La entropía es: {entropia_total:.3f} bits")
 ```
----
+
 
 
 # **UNIDAD III. COMPRESIÓN DE DATOS**
