@@ -1,7 +1,15 @@
+# **IT0332 - Teoría de la información**
 
-## <font color="red"> **Actualización: "Se agregan 4 codificaciones de compresion de datos"** </font>
+### ¡Actualización! - Unidad III. COMPRESIÓN DE DATOS
 
-# Esquema de comunicación
+**Nombre: Marcos Damián Pool Canul.**
+
+**Matricula: 200300591@ucaribe.edu.mx**
+
+**Profesor: Carlos Francisco Paz Cuevas.**
+
+---
+## **Esquema de comunicación**
 
 Se realizara un programa en Python que simule un esquema de comunicación con los sigueintes puntos:
 
@@ -9,13 +17,10 @@ Se realizara un programa en Python que simule un esquema de comunicación con lo
 
 2. **Transmisor:** Transforma o codifica esta información en una forma apropiada al canal.
 3. **Canal:** Medio a través del cual las señales son transmitidas al punto de recepción.
-4. **Receptor:** Decodifica o vuelve a transformar la señal transmitida en el mensaje original o en una aproximación de este haciéndolo llegar a su destino.
+4. **Receptor:** Decodifica la señal transmitida en el mensaje original haciéndolo llegar a su destino.
 5. **Destino de información:** Muestra el mensaje decodificado.
-
-
 ---
-
-
+# **UNIDAD I. INTRODUCCIÓN A LA TEORÍA DE LA INFORMACIÓN**
 
 #### **1. Fuente de información**
 El primer paso en nuestro esquema de comunicacion es la fuente de infomacion, osea el mensaje.
@@ -24,50 +29,34 @@ El primer paso en nuestro esquema de comunicacion es la fuente de infomacion, os
 
 - Luego, se implementará una función para leer y extraer el contenido de este archivo.
 
-Hay que tener en cuenta que para crear el archivo "fuente.txt" manualmente, podemos utilizar un editor de texto y guardarlo en la misma ubicación donde se encuentra el script de Python. Luego, podemos usar el código en Python para leerlo.
-
-```
-# Se uso a chatGPT para generar la funcion para poder leer un archivo de texto.
+Este es el codigo para leer un archivo de texto.
+```python
+# Funcion para leer un archivo de .txt
 def leer_archivo(nombre_archivo):
     try:
-        with open(nombre_archivo, 'r') as archivo:
+        with open(nombre_archivo, encoding="utf8") as archivo:
             contenido = archivo.read()
             return contenido
     except FileNotFoundError:
         print(f"El archivo '{nombre_archivo}' no fue encontrado.")
         return ""
 ```
----
+
 #### **2. Transmisor**
 Es el emisor técnico, esto es el que transforma el mensaje emitido en un conjunto de señales o códigos que serán adecuados al canal encargado de transmitirlos.
 
-En este caso, vamos a utilizar el archivo de texto y convertir su contenido a código ASCII y luego a representación binaria para la transmisión.
+Un ejemplo basico seria el de leer un archivo de texto y convertir su contenido a código ASCII.
 
-Ahora explicare mas a detalle esta parte:
+Para llevar a cabo la conversión a codigo ASCII, creamos la funcion 'texto_a_ascii' y la implementamos en el esquema de comunicacion:
 
-1. Leer contenido del archivo de texto:
-
-Inicialmente, hemos leído el contenido del archivo de texto llamado "fuente.txt" en la etapa de la "Fuente de Información". Este contenido se almacena en la variable contenido_fuente que sera el mensaje.
-
-2. Convertir a código ASCII:
-
-En la etapa de la "Fuente de Información", hemos convertido el contenido del archivo de texto en una lista de códigos ASCII utilizando la función texto_a_ascii. Cada carácter del texto se representó como su correspondiente valor ASCII.
-
-3. Convertir a representación binaria (Adicional):
-
-Para llevar a cabo la conversión a una representación binaria, podemos agregar una función adicional para realizar esta conversión. Por ejemplo:
-
-```
+```python
 def texto_a_ascii(texto):
     ascii_codigos = [ord(char) for char in texto]
     return ascii_codigos
 ```
-
----
 #### **3. Canal**
-Es el medio técnico que debe transportar las señales codificadas por el transmisor. Este medio será, en este caso la simulación de, cables, fibra óptica o por aire.
 
-A continuación, explicare cómo planeo simular esta parte:
+Es el medio técnico que debe transportar las señales codificadas por el transmisor. Este medio será, en este caso la simulación de, cables, fibra óptica o por aire.
 
 1. Agregar Ruido al Mensaje Transmitido:
 
@@ -79,9 +68,8 @@ Debemos ajustar la variable "probabilidad_ruido" para controlar la cantidad de r
 
 3. Función para Agregar Ruido:
 
-Aquí está una version beta de como seria esta funcion en Python:
 
-```
+```python
 def agregar_ruido(mensaje, probabilidad):
     mensaje_con_ruido = ""
     for bit in mensaje:
@@ -93,8 +81,6 @@ def agregar_ruido(mensaje, probabilidad):
     return mensaje_con_ruido
 
 ```
-
----
 #### **4. Receptor**
 
 La actividad del receptor es la inversa de la del transmisor. Su función consiste en decodificar el mensaje transmitido y conducirlo por el canal, para transcribirlo en un lenguaje comprensible por el verdadero receptor que es llamado destinatario.
@@ -107,7 +93,7 @@ El receptor comienza recibiendo el mensaje transmitido. En el código existente,
 
 El receptor decodifica la señal para obtener la información en su forma original. Si en el "Transmisor" convertimos la información a representación binaria, debemos realizar la conversión inversa para obtener los códigos ASCII o el formato original de los datos.
 
-```
+```python
 def binario_a_ascii(binario):
     # Divide la cadena binaria en segmentos de 8 bits y conviértelos a valores ASCII
     ascii_codigos = [int(binario[i:i+8], 2) for i in range(0, len(binario), 8)]
@@ -117,14 +103,11 @@ def binario_a_ascii(binario):
 
     return mensaje_texto
 ```
----
 #### **5. Destino de información**
 
-El "Destino de Información" o "Destinatario," simplemente recibe el mensaje procesado y lo utiliza según su aplicación específica. En este caso el destinatario simplemente imprimirá el mensaje en su forma original (texto ASCII).
+El "Destino de Información" o "Destinatario," simplemente recibe el mensaje procesado y lo utiliza según su aplicación específica. En este caso el destinatario simplemente imprimirá el mensaje en su forma original.
 
-Codigo:
-
-```
+```python
 # 5. Destino de Información (Destinatario)
 mensaje_destino = mensaje_recibido  # En este ejemplo, el mensaje en su forma original
 
@@ -134,20 +117,88 @@ print("Mensaje en el Destinatario: ", mensaje_texto)
 
 ```
 
-- "mensaje_recibido" es el mensaje que ha sido procesado y que ahora se encuentra en su forma recuperada después de haber pasado por el "Receptor."
+El "mensaje_recibido" es el mensaje que ha sido procesado y que ahora se encuentra en su forma recuperada después de haber pasado por el "Receptor."
 
-- Luego, convertimos la representación binaria nuevamente a texto ASCII. Suponemos que el mensaje original estaba en formato ASCII y, por lo tanto, cada conjunto de 8 bits se interpreta como un carácter ASCII. Usamos chr para convertir estos valores numéricos en caracteres ASCII.
+---
 
-- Finalmente, el mensaje en su forma original se imprime en el destinatario.
+# **UNIDAD II. ENTROPÍA, PROBABILIDAD E INFERENCIA**
 
-> # <font color="4169E1"> **Códificación Huffman** </font>
+En teoría de la información, una entropía es una medida que indica un contenido medio de información de los mensajes de salida para una determinada fuente de mensajes. La comprensión teórica de la información del término entropía se remonta a Claude Shannon.
 
+### **Entropia de una moneda (ejemplo visto en clase)**
+```python
+p(X=cara)=0.5
+``` 
+La entropía viene dada por la siguiente expresión:
+```python
+H=−∑ip(xi)log2p(xi)=−p(X=cara)log2p(X=cara)−p(X=cruz)log2p(X=cruz)
+```
+Por tanto, lanzar una moneda asumiendo que la distribución de probabilidades es uniforme resultaría en una entropía de 1 bit.
+
+```python
+import math
+
+def calcular_entropia(probabilidad):
+    if probabilidad <= 0 or probabilidad >= 1:
+        return "La probabilidad debe estar entre 0 y 1"
+
+    entropia = -math.log2(probabilidad)
+    return entropia
+
+# Ejemplo: Probabilidad de obtener cara en una moneda justa (0.5)
+probabilidad_moneda = 0.5
+entropia_moneda = calcular_entropia(probabilidad_moneda)
+print(f"La entropía de lanzar una moneda justa es {entropia_moneda}")
+```
+
+### **Calculo de la entropia**
+
+En este punto realizamos un ejercicio para calcular la entropia en con un umbarl y sigueindo la formula de la entropia.
+
+```python
+def calcular_entropia(probabilidad):
+    entropia = 0.0
+    for k in range(11):
+        if probabilidad > 0:
+            entropia -= probabilidad * math.log2(probabilidad)
+    return entropia
+
+# Definimos el umbral con los numeros que queramos.
+umbral = [15, 16, 17, 18, 19, 20]
+
+#Generamos 10 numeros aleatorios en una rango de 0 a 20.
+numeros = [random.randint(0, 20) for _ in range(10)]
+
+contador = 0
+
+# Creamos un ciclo para saber cuantos numeros se repiten en el umbral y sacar la probabilidad.
+for numero in numeros:
+    if numero in umbral:
+        contador = contador + 1
+
+k = len(numeros)
+pk = contador / len(numeros)
+
+# Corremos la funcion y despues la imprimimos.
+entropia_total = calcular_entropia(pk)
+
+print(f"Numeros generados: {numeros}")
+print(f"Entropía con umbral: {umbral}")
+print(f"Probabilidad: {pk} \n")
+print(f"La entropía es: {entropia_total:.3f} bits")
+```
+---
+
+
+# **UNIDAD III. COMPRESIÓN DE DATOS**
+
+> # **Códificación Huffman**
 
 La codificación Huffman es un método ampliamente utilizado en la compresión de datos. Su objetivo es representar un texto en binario de una manera más eficiente que la codificación estándar ASCII, asignando códigos binarios más cortos a caracteres más comunes y códigos más largos a caracteres menos comunes. Esto resulta en una reducción significativa en la cantidad de bits necesarios para representar el texto.
 
-A continuación, se explicará cómo se implementó la codificación Huffman en el esquema de comunicación y se proporcionarán fragmentos de código para ilustrar cada paso del proceso.
+**A continuación, se explicará cómo se implementó la codificación Huffman en el esquema de comunicación y se proporcionarán fragmentos de código para ilustrar cada paso del proceso.**
 
-## **1. Fuente de Información**
+### **1. Fuente de Información**
 
 El primer paso es obtener el mensaje original desde un archivo de texto. La función `leer_archivo` se encarga de leer el archivo "fuente.txt" y almacenar su contenido en la variable `texto_original`.
 
@@ -157,7 +208,7 @@ texto_original = leer_archivo(nombre_archivo_fuente)
 print("Mensaje:", texto_original)
 ```
 
-## **2. Transmisor**
+### **2. Transmisor**
 
 En el transmisor, el mensaje original se convierte en una representación binaria. La función `texto_a_binario` toma el mensaje y lo convierte en una secuencia de ceros y unos, donde cada carácter se representa como una cadena binaria de 8 bits.
 
@@ -177,11 +228,11 @@ El siguiente paso es generar un diccionario que asocie cada carácter con su cor
 diccionario = diccionario_huffman(raiz)
 ```
 
-## **3. Canal**
+### **3. Canal**
 
 En esta implementación, no se agrega ruido al canal de comunicación, pero es el lugar donde, en un escenario real, podrían ocurrir errores o ruido en la transmisión.
 
-## **4. Receptor**
+### **4. Receptor**
 
 En el receptor, el mensaje binario codificado se decodifica utilizando el árbol Huffman previamente construido. Comenzando desde la raíz del árbol, se sigue el camino de bits (0 o 1) para identificar los caracteres correspondientes. Cuando se llega a un nodo hoja del árbol, se identifica un carácter y se agrega al mensaje decodificado.
 
@@ -190,7 +241,7 @@ texto_codificado = "".join(diccionario[char] for char in texto_original)
 texto_decodificado = decodificar(texto_codificado, raiz)
 ```
 
-## **5. Destino de Información**
+### **5. Destino de Información**
 
 Finalmente, se muestra la cadena binaria original, la cadena binaria comprimida, el mensaje original y el mensaje recibido después de la decodificación. Además, se imprime la lista de símbolos utilizados en el diccionario Huffman, que muestra qué códigos binarios se asignaron a cada carácter en el mensaje original.
 
@@ -204,97 +255,94 @@ print("Mensaje recibido:", texto_decodificado)
 print("Lista de símbolos")
 print(diccionario)
 ```
-
 Con esta implementación de la codificación Huffman, el mensaje se comprime y descomprime eficientemente durante la transmisión y recepción, lo que permite reducir el número de bits necesarios para representar el texto original.
 
-> # <font color="4169E1"> **Códificación Shannon-Fano** </font>
+> # **Códificación Shannon Fano**
 
-La codificación Shannon-Fano es un algoritmo de compresión de datos sin pérdida desarrollado por Robert Fano, basado en una idea de Claude Shannon. Este método se utiliza para comprimir datos representando los símbolos con códigos binarios variables de longitud. A diferencia de la codificación Huffman, que es óptima, la codificación Shannon-Fano no siempre produce códigos óptimos, pero es más simple y rápida de construir.
+*La codificación Shannon-Fano es un algoritmo de compresión de datos sin pérdida desarrollado por Robert Fano a partir de una idea de Claude Shannon.*
 
-La codificación Shannon-Fano se basa en los siguientes pasos:
+**Se trata de una codificación de entropía que produce un código de prefijo muy similar a un código de Huffman , aunque no siempre óptimo, a diferencia de este último.**
 
-1. Crear una lista de símbolos y calcular sus frecuencias de aparición en los datos.
-2. Ordenar la lista de símbolos por frecuencia, de mayor a menor.
-3. Dividir la lista en dos partes, de manera que la suma de las frecuencias de la primera mitad sea lo más cercana posible a la suma de las frecuencias de la segunda mitad.
-4. Asignar el bit "0" a los símbolos en la primera mitad y el bit "1" a los símbolos en la segunda mitad.
-5. Repetir los pasos 3 y 4 recursivamente para las dos mitades hasta que todos los símbolos tengan un código asignado.
+Un árbol Shannon-Fano se construye de acuerdo a una especificación diseñada para definir una tabla de códigos efectiva. El algoritmo actual es simple:
 
-A continuación, se proporciona un fragmento de código que ilustra la implementación de la codificación Shannon-Fano en el esquema de comunicación:
+1. Para una lista de símbolos dada, crear su correspondiente lista de probabilidades o de frecuencias de aparición de manera que se conozca la frecuencia relativa de ocurrencia de cada símbolo.
 
-## **1. Fuente de Información**
+2. Ordenar las listas de símbolos de acuerdo a la frecuencia, con los símbolos de ocurrencia más frecuente a la izquierda y los menos comunes a la derecha.
+
+3. Dividir la lista en dos partes, haciendo la frecuencia total de la mitad izquierda lo más próxima posible a la de la mitad derecha.
+
+4. Asignar a la mitad izquierda el dígito binario “0”, y a la mitad derecha el dígito “1”. Esto significa que los códigos para los símbolos en la primera mitad empezarán con “0”, y que los códigos de la segunda mitad empezarán por “1”.
+5. Aplicar recursivamente los pasos 3 y 4 a cada una de las dos mitades, subdividiéndolas en grupos y añadiendo bits a los códigos hasta que cada símbolo se corresponde con una hoja del árbol.
+
+### **1. Fuente de Información**
 
 En este paso, se lee un archivo de texto que contiene el mensaje original:
 
 ```python
-nombre_archivo_fuente = "fuente.txt"
+# 1. Fuente de información (leyendo un archivo de texto)
+def leer_archivo(nombre_archivo):
+    try:
+        with open(nombre_archivo, encoding="utf8") as archivo:
+            contenido = archivo.read()
+            return contenido
+    except FileNotFoundError:
+        print(f"El archivo '{nombre_archivo}' no fue encontrado.")
+        return ""
+
+nombre_archivo_fuente = "input.txt"
 texto_original = leer_archivo(nombre_archivo_fuente)
 ```
-
-Luego, se convierte el mensaje de texto en una cadena binaria:
-
+### **2. Transmisor**
 ```python
-mensaje_binario = texto_a_binario(texto_original)
+# Se encarga de asignar códigos "0" y "1" a los compresores. 
+def codificador(compresores, particion):
+    if particion > 0: # Indica que todavía hay compresores que deben recibir códigos.
+        parte_1 = compresores[:particion+1]
+        for i in parte_1:
+            i.codigo += '0' # Esto indica que estos compresores están en la parte izquierda de la partición.
+        if len(parte_1) <= 1: # En este caso, retorna y no se realizan más divisiones.
+            return
+        codificador(parte_1, divisor(probabilidad=[i.probabilidad for i in parte_1], puntero=0))
+        parte_2 = compresores[particion+1:]
+        for i in parte_2:
+            i.codigo += '1' # Esto indica que estos compresores están en la parte derecha de la partición.
+        if len(parte_2) <= 1:
+            return
+        codificador(parte_2, divisor(probabilidad=[i.probabilidad for i in parte_2], puntero=0))
+    elif particion == 0: # En caso de que la partición sea igual a cero, significa que todos los compresores se encuentran en la misma partición.
+        parte_1 = compresores[:particion+1]
+        for i in parte_1:
+            i.codigo += '0'
+        parte_2 = compresores[particion+1:]
+        for i in parte_2:
+            i.codigo += '1'
 ```
 
-## **2. Transmisor**
+### **4. Receptor**
 
-En el transmisor, se realizan varios pasos para construir la tabla de codificación Shannon-Fano y codificar el mensaje:
-
-### Paso 2: Dividir la cadena binaria en bytes
-
+Realizamos el proceso de descompresion y lo guardamos en un archivo de texto.
 ```python
-bytes_binarios = dividir_binario_en_bytes(mensaje_binario)
+with open("output.txt", "w", encoding="utf-8") as archivo_salida:
+    archivo_salida.write(texto_decomprimido)
+print()
+print("Mensaje decodificado guardado en 'output'.")
+```
+### **5. Destino de informacion**
+
+Iteramos para inprimir los caracteres, codigos y las probabilidades.
+```python
+# 5. Destino de Información (Destinatario)
+print("                |------------------------|")
+print("                |    Datos codificados   |")
+print("                |------------------------|")
+print()
+datos_comprimidos = comprimir_datos(texto_original)
+for i in datos_comprimidos:
+    print(f"Caracter: {i.original}, Código: {i.codigo}, Probabilidad: {i.probabilidad}")
 ```
 
-### Paso 3: Calcular las frecuencias de cada byte
 
-```python
-frecuencias = calcular_frecuencias(bytes_binarios)
-```
-
-### Paso 4: Construir la tabla de codificación Shannon-Fano
-
-```python
-tabla_codificacion_sf = construir_tabla_shannon_fano(frecuencias)
-```
-
-### Paso 5: Codificar el mensaje utilizando la tabla de codificación Shannon-Fano
-
-```python
-mensaje_codificado = codificar_con_shannon_fano(bytes_binarios, tabla_codificacion_sf)
-```
-
-## **3. Canal**
-
-En esta implementación, no se agrega ruido al canal de comunicación, pero este es el lugar donde, en un escenario real, podrían ocurrir errores o ruido en la transmisión.
-
-## **4. Receptor**
-
-En el receptor, se decodifica el mensaje utilizando la tabla de codificación Shannon-Fano:
-
-### Paso 6: Decodificar el texto codificado utilizando la tabla de codificación Shannon-Fano
-
-```python
-mensaje_decodificado = decodificar_con_shannon_fano(mensaje_codificado, tabla_codificacion_sf)
-```
-
-## **5. Destino de Información**
-
-Finalmente, se muestra el mensaje original, el mensaje codificado y el mensaje decodificado:
-
-```python
-print("Mensaje Original:", texto_original)
-print("Mensaje Codificado:", mensaje_codificado)
-print("Mensaje Decodificado:", mensaje_decodificado)
-
-print("Tabla de Codificación Shannon-Fano:")
-for byte, codigo in tabla_codificacion_sf.items():
-    print(f"{byte}: {codigo}")
-```
-
-La codificación Shannon-Fano permite comprimir datos utilizando códigos de longitud variable de manera eficiente, aunque no siempre óptima. Esta implementación muestra cómo se puede aplicar la codificación Shannon-Fano en un esquema de comunicación para la compresión y posterior descompresión de datos.
-
-> # <font color="4169E1"> **Códificación Lempel Ziv y Welch (Algoritmo LZW)** </font>
+> # **Códificación Lempel Ziv y Welch (Algoritmo LZW)** 
 
 El algoritmo Lempel Ziv y Welch, conocido como Algoritmo LZW, es un método de compresión de datos sin pérdida que se basa en la construcción y el mantenimiento de un diccionario de códigos que representan secuencias de caracteres en los datos de entrada. El algoritmo fue desarrollado por Terry Welch en 1984 como una mejora del algoritmo LZ78, y se ha utilizado ampliamente en formatos de compresión como GIF y TIFF.
 
@@ -312,7 +360,7 @@ El proceso del algoritmo LZW se puede dividir en los siguientes pasos:
 
 A continuación, se incluyen fragmentos de código que ilustran los pasos 1, 2 y 4 de la implementación del algoritmo LZW en el esquema de comunicación:
 
-## **1. Fuente de Información**
+### **1. Fuente de Información**
 
 En este paso, se lee un archivo de texto que contiene el mensaje original:
 
@@ -321,12 +369,12 @@ nombre_archivo_fuente = "fuente.txt"
 texto_original = leer_archivo(nombre_archivo_fuente)
 ```
 
-## **2. Transmisor (Compresión)**
+### **2. Transmisor (Compresión)**
 
 La compresión del mensaje se realiza utilizando el algoritmo LZW. Aquí, se mantiene un diccionario que se expande a medida que se encuentra contenido repetitivo en el mensaje:
 
 ```python
-def lzw_compress(text):
+def comprimir(text):
     dictionary = {chr(i): i for i in range(256)}  # Inicializar el diccionario con caracteres ASCII
     next_code = 256
     result = []
@@ -345,25 +393,25 @@ def lzw_compress(text):
     return result
 ```
 
-## **4. Receptor (Descompresión)**
+### **4. Receptor (Descompresión)**
 
 En el receptor, se decodifica el mensaje utilizando el mismo diccionario que se utilizó en el transmisor:
 
 ```python
-def lzw_decompress(compressed_data):
+def descomprimir(datos_descomprimidos):
     dictionary = {i: chr(i) for i in range(256)}  # Inicializar el diccionario con caracteres ASCII
     next_code = 256
     result = []
-    current_code = chr(compressed_data[0])
+    current_code = chr(datos_descomprimidos[0])
     result.append(current_code)
 
-    for code in compressed_data[1:]:
+    for code in datos_descomprimidos[1:]:
         if code in dictionary:
             entry = dictionary[code]
         elif code == next_code:
             entry = current_code + current_code[0]
         else:
-            raise ValueError("Data corrupted or invalid.")
+            raise ValueError("Invalido")
 
         result.append(entry)
         dictionary[next_code] = current_code + entry[0]
@@ -379,20 +427,19 @@ def lzw_decompress(compressed_data):
 
 En el paso de descompresión, se recupera el mensaje original a partir de los códigos comprimidos utilizando el diccionario. Al final, se imprime el diccionario utilizado durante la compresión para mostrar cómo evolucionó a medida que se encontraron nuevas secuencias en los datos.
 
-## **5. Destino de Información**
+### **5. Destino de Información**
 
 En el paso de destino de información, se presentan los resultados de la compresión y descompresión del mensaje, junto con el diccionario utilizado durante la compresión. Es esencial para verificar si el algoritmo LZW logra comprimir y descomprimir los datos de manera efectiva.
 
-
 ```python
 # Comprimir el texto
-compressed_data = lzw_compress(texto_original)
+datos_comprimidos = comprimir(texto_original)
 print("Texto original:", texto_original)
-print("Datos comprimidos:", compressed_data)
+print("Datos comprimidos:", datos_comprimidos)
 
 # Descomprimir los datos comprimidos
-decompressed_text = lzw_decompress(compressed_data)
-print("Texto descomprimido:", decompressed_text)
+datos_descomprimidos = descomprimir(datos_comprimidos)
+print("Texto descomprimido:", datos_descomprimidos)
 
 print("Diccionario:")
 for key, value in dictionary.items():
@@ -401,11 +448,11 @@ for key, value in dictionary.items():
 
 En este paso, se muestra el mensaje original, los datos comprimidos (resultado de la compresión) y el mensaje descomprimido (resultado de la descompresión). Además, se imprime el diccionario utilizado durante la compresión, lo que permite una inspección detallada de cómo evolucionó el diccionario a medida que se encontraron nuevas secuencias en los datos durante la compresión y descompresión. Esto es útil para entender el funcionamiento del algoritmo LZW y verificar la fidelidad de la compresión y descompresión.
 
-> # <font color="4169E1"> **Códificación Run-Length Encoding (RLE)** </font>
+> # **Códificación Run-Length Encoding (RLE)**
 
 El algoritmo Run-Length Encoding, abreviado como RLE, es un método de compresión de datos simple y eficaz que se utiliza para codificar secuencias repetitivas en datos. Este algoritmo es especialmente efectivo cuando los datos contienen secuencias repetitivas y puede reducir significativamente el tamaño de los datos.
 
-## **1. Fuente de Información**
+### **1. Fuente de Información**
 
 El primer paso de RLE implica leer un archivo de texto o una fuente de datos. Esto proporciona el texto original que se comprimirá. Aquí está el código para leer un archivo de texto:
 
@@ -424,13 +471,13 @@ nombre_archivo_fuente = "fuente.txt"
 texto_original = leer_archivo(nombre_archivo_fuente)
 ```
 
-## **2. Transmisor**
+### **2. Transmisor**
 
 En el paso del transmisor, el algoritmo RLE codifica el texto original utilizando secuencias repetidas. Aquí tienes el código que realiza la codificación RLE:
 
 ```python
 # 2. Transmisor (codificamos con el algoritmo RLE)
-def run_length_encode(text):
+def codificacion(text):
     encoded_text = []
     count = 1
 
@@ -446,17 +493,17 @@ def run_length_encode(text):
     return "".join(encoded_text)
 ```
 
-## **3. Canal**
+### **3. Canal**
 
 En un esquema de comunicación, este es el punto en el que se transmiten los datos codificados. En el caso de RLE, no se agrega ruido porque la codificación y decodificación son deterministas.
 
-## **4. Receptor**
+### **4. Receptor**
 
 El receptor descomprime los datos codificados utilizando el algoritmo RLE. Aquí tienes el código para decodificar los datos:
 
 ```python
 # 4. Receptor (decodificamos usando los datos codificados)
-def run_length_decode(encoded_text):
+def decodificacion(encoded_text):
     decoded_text = []
     i = 0
 
@@ -473,14 +520,14 @@ def run_length_decode(encoded_text):
     return "".join(decoded_text)
 ```
 
-## **5. Destino de Información**
+### **5. Destino de Información**
 
 En este paso, se presentan los resultados de la compresión y descompresión junto con una vista del "diccionario" utilizado por RLE. El algoritmo RLE no utiliza un diccionario en el sentido convencional, pero es útil mostrar las secuencias repetidas que se detectaron. Aquí está el código:
 
 ```python
 # 5. Destino de Información (Se imprimen las cadenas de texto)
-encoded_text = run_length_encode(texto_original)
-decoded_text = run_length_decode(encoded_text)
+encoded_text = codificacion(texto_original)
+decoded_text = decodificacion(encoded_text)
 
 print("Texto original:", texto_original)
 print("Texto codificado:", encoded_text)
