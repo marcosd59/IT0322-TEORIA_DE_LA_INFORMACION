@@ -538,3 +538,10 @@ print_rle_dictionary(texto_original)
 En este paso, también puedes ver las secuencias repetidas en el texto original. Esto es útil para verificar si RLE funciona de manera efectiva.
 
 Es importante destacar que RLE es especialmente útil para datos que contienen secuencias repetitivas, como imágenes simples o datos binarios con secciones repetidas.
+
+# **UNIDAD IV. TÓPICOS SELECTOS DE TEORÍA DE LA INFORMACIÓN**
+
+Aplicar las propiedades de los códigos Hash y binarios para la resolución de problemas de ingeniería de datos.
+
+- 1) Códigos Hash
+- 2) Códigos binarios
