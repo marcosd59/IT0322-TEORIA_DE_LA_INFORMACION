@@ -545,3 +545,97 @@ Aplicar las propiedades de los códigos Hash y binarios para la resolución de p
 
 - 1) Códigos Hash
 - 2) Códigos binarios
+ 
+## Esquema de comunicación con Codificación Hash
+
+### Descripción:
+
+Este código implementa un esquema de comunicación que utiliza la codificación hash para asegurar la integridad de los mensajes transmitidos. Aquí se proporciona una descripción de las principales funciones y pasos del programa:
+
+### Importamos las librerías
+- `hashlib`: Utilizada para generar el hash SHA-256.
+- `random`: Utilizada para la generación de valores aleatorios.
+- `bitstring`: Utilizada para manipular cadenas binarias.
+- `collections.Counter`: Utilizada para contar las frecuencias de elementos en una lista.
+
+### 1. Fuente de información
+
+#### `leer_archivo(nombre_archivo)`
+- Descripción: Lee el contenido de un archivo y devuelve su contenido.
+- Parámetros: `nombre_archivo` - El nombre del archivo a leer.
+- Retorno: El contenido del archivo o una cadena vacía si el archivo no es encontrado.
+
+### 2. Transmisor
+
+#### `Convertir_a_Lista(mensaje)`
+- Descripción: Convierte un mensaje en una lista de caracteres.
+- Parámetros: `mensaje` - El mensaje a convertir.
+- Retorno: Lista de caracteres.
+
+#### `Convertir_a_String(lista)`
+- Descripción: Convierte una lista de caracteres en una cadena.
+- Parámetros: `lista` - Lista de caracteres.
+- Retorno: Cadena de caracteres.
+
+#### `Binario_a_Texto(binario)`
+- Descripción: Convierte una cadena binaria en texto.
+- Parámetros: `binario` - Cadena binaria.
+- Retorno: Texto correspondiente a la cadena binaria.
+
+#### Codificación Run Length Encoding (RLE)
+
+##### `CodificacionRunLengEnconding(cadena)`
+- Descripción: Realiza la codificación Run Length Encoding (RLE) de una cadena.
+- Parámetros: `cadena` - Cadena a codificar.
+- Retorno: Cadena codificada con RLE.
+
+#### Codificación Hash
+
+##### `FrecuenciasRelativas(lista_patrones)`
+- Descripción: Calcula las frecuencias relativas de los patrones en una lista.
+- Parámetros: `lista_patrones` - Lista de patrones.
+- Retorno: Listas ordenadas de palabras y sus frecuencias relativas.
+
+##### `Transmisor(BinariList)`
+- Descripción: Realiza la transmisión de datos aplicando RLE y generando un diccionario de patrones y sus correspondientes codificaciones.
+- Parámetros: `BinariList` - Lista de datos binarios.
+- Retorno: Diccionario de patrones y sus codificaciones.
+
+##### `CodificarLista(BinariList, handshake)`
+- Descripción: Codifica una lista de datos binarios según el diccionario de patrones proporcionado.
+- Parámetros: `BinariList` - Lista de datos binarios. `handshake` - Diccionario de patrones y sus codificaciones.
+- Retorno: Lista de datos codificados.
+
+##### `BorrarAleatorio(lista1, lista2)`
+- Descripción: Elimina de manera aleatoria un elemento de dos listas y lo devuelve.
+- Parámetros: `lista1` y `lista2` - Listas de elementos.
+- Retorno: Listas actualizadas y el elemento eliminado.
+
+### 3. Canal
+
+#### `Canal(paquete, indices, canales)`
+- Descripción: Simula la transmisión del paquete a través de un canal y puede introducir ruido.
+- Parámetros: `paquete` - Lista de paquetes, `indices` - Lista de índices de paquetes, `canales` - Lista que simula canales de comunicación.
+- Retorno: Lista actualizada de canales, indicador de ruido, canal usado y el índice eliminado.
+
+### Busqueda Binaria
+
+#### `BusquedaBinaria(lista_valores, buscar)`
+- Descripción: Realiza una búsqueda binaria en una lista ordenada.
+- Parámetros: `lista_valores` - Lista ordenada, `buscar` - Valor a buscar.
+- Retorno: Índice del valor encontrado o -1 si no se encuentra.
+
+#### `Ordenar(diccionario)`
+- Descripción: Ordena un diccionario por sus valores y devuelve las claves y valores ordenados.
+
+### 4. Generar Hash
+
+#### `GenerarHash(dato)`
+- Descripción: Genera un hash SHA-256 de un dato.
+- Parámetros: `dato` - Dato a ser hasheado.
+- Retorno: Hash SHA-256.
+
+### 5. Comparar Hash
+
+#### `CompararHash(cadenaList, claves, valores)`
+- Descripción: Compara la lista de cadenas con
