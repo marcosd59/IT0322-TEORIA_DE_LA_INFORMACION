@@ -1,6 +1,6 @@
 # **IT0332 - Teoría de la información**
 
-### ¡Actualización! - Unidad III. COMPRESIÓN DE DATOS
+### ¡Actualización! - Unidad IV. COMPRESIÓN DE DATOS
 
 **Nombre: Marcos Damián Pool Canul.**
 
