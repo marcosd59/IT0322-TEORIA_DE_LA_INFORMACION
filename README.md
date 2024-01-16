@@ -1,4 +1,4 @@
-# **IT0332 - Teoría de la información**
+# **Teoría de la información - IT0332**
 
 ### ¡Actualización! - Unidad IV. COMPRESIÓN DE DATOS
 
