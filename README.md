@@ -565,6 +565,17 @@ Este código implementa un esquema de comunicación que utiliza la codificación
 - Parámetros: `nombre_archivo` - El nombre del archivo a leer.
 - Retorno: El contenido del archivo o una cadena vacía si el archivo no es encontrado.
 
+```python
+def leer_archivo(nombre_archivo):
+    try:
+        with open(nombre_archivo, 'r') as archivo:
+            contenido = archivo.read()
+            return contenido
+    except FileNotFoundError:
+        print(f"El archivo '{nombre_archivo}' no fue encontrado.")
+        return ""
+```
+
 ### 2. Transmisor
 
 #### `Convertir_a_Lista(mensaje)`
@@ -572,22 +583,36 @@ Este código implementa un esquema de comunicación que utiliza la codificación
 - Parámetros: `mensaje` - El mensaje a convertir.
 - Retorno: Lista de caracteres.
 
+```python
+def Convertir_a_Lista(mensaje):
+  lista = []
+  for i in mensaje:
+    lista.append(i)
+  return lista
+```
+
 #### `Convertir_a_String(lista)`
 - Descripción: Convierte una lista de caracteres en una cadena.
 - Parámetros: `lista` - Lista de caracteres.
 - Retorno: Cadena de caracteres.
+
+```python
+def Convertir_a_String(lista):
+    return ''.join(lista)
+```
 
 #### `Binario_a_Texto(binario)`
 - Descripción: Convierte una cadena binaria en texto.
 - Parámetros: `binario` - Cadena binaria.
 - Retorno: Texto correspondiente a la cadena binaria.
 
-#### Codificación Run Length Encoding (RLE)
-
-##### `CodificacionRunLengEnconding(cadena)`
-- Descripción: Realiza la codificación Run Length Encoding (RLE) de una cadena.
-- Parámetros: `cadena` - Cadena a codificar.
-- Retorno: Cadena codificada con RLE.
+```python
+def Binario_a_Texto(binario):
+    bloques = [binario[i:i+8] for i in range(0, len(binario), 8)]
+    caracteres = [chr(int(bloque, 2)) for bloque in bloques]
+    texto = ''.join(caracteres)
+    return texto
+```
 
 #### Codificación Hash
 
@@ -635,7 +660,24 @@ Este código implementa un esquema de comunicación que utiliza la codificación
 - Parámetros: `dato` - Dato a ser hasheado.
 - Retorno: Hash SHA-256.
 
+```python
+def GenerarHash(dato):
+  bdatos = bytes(dato,'utf-8')
+  h = hashlib.new("sha256",bdatos)
+  digest=h.hexdigest()
+  return digest
+```
+
 ### 5. Comparar Hash
 
 #### `CompararHash(cadenaList, claves, valores)`
-- Descripción: Compara la lista de cadenas con
+
+```python
+def CompararHash(cadenaList,claves,valores):
+  indice = BusquedaBinaria(valores, cadenaList)
+
+  if(indice != -1):
+    return claves[indice]
+  else:
+    return "x"
+```
