@@ -621,20 +621,75 @@ def Binario_a_Texto(binario):
 - Parámetros: `lista_patrones` - Lista de patrones.
 - Retorno: Listas ordenadas de palabras y sus frecuencias relativas.
 
+```python
+def FrecuenciasRelativas(lista_patrones):
+  contador = Counter(lista_patrones)
+  total_palabras = len(lista_patrones)
+  palabras = []
+  frecuencias_relativas = []
+
+  for palabra, count in contador.items():
+      palabras.append(palabra)
+      frecuencia_relativa = count / total_palabras
+      frecuencias_relativas.append(frecuencia_relativa)
+  palabras_ordenadas, frecuencias_ordenadas = zip(*sorted(zip(palabras, frecuencias_relativas), key=lambda x: x[1], reverse=True))
+
+  palabras_ordenadas = list(palabras_ordenadas)
+  frecuencias_ordenadas = list(frecuencias_ordenadas)
+
+  for i in range(0,len(frecuencias_ordenadas)-1):
+    suma =1e-12
+    for j in range(i,len(frecuencias_ordenadas)-1):
+      if(frecuencias_ordenadas[i] == frecuencias_ordenadas[j+1]):
+        frecuencias_ordenadas[j+1] = frecuencias_ordenadas[j+1] - suma
+        suma = suma + 1e-12
+      else:
+        break
+  return palabras_ordenadas, frecuencias_ordenadas
+```
+
 ##### `Transmisor(BinariList)`
 - Descripción: Realiza la transmisión de datos aplicando RLE y generando un diccionario de patrones y sus correspondientes codificaciones.
 - Parámetros: `BinariList` - Lista de datos binarios.
 - Retorno: Diccionario de patrones y sus codificaciones.
+
+```python
+def Transmisor(BinariList):
+  patrones, frecuencias = FrecuenciasRelativas(BinariList)
+  lista_RLE = []
+
+  for i in patrones:
+    lista_RLE.append(CodificacionRunLengEnconding(i))
+  return dict(zip(patrones,lista_RLE))
+```
 
 ##### `CodificarLista(BinariList, handshake)`
 - Descripción: Codifica una lista de datos binarios según el diccionario de patrones proporcionado.
 - Parámetros: `BinariList` - Lista de datos binarios. `handshake` - Diccionario de patrones y sus codificaciones.
 - Retorno: Lista de datos codificados.
 
+```python
+def CodificarLista(BinariList,handshake):
+  codificar = []
+  for i in BinariList:
+    codificar.append(handshake[i])
+  return codificar
+```
+
 ##### `BorrarAleatorio(lista1, lista2)`
 - Descripción: Elimina de manera aleatoria un elemento de dos listas y lo devuelve.
 - Parámetros: `lista1` y `lista2` - Listas de elementos.
 - Retorno: Listas actualizadas y el elemento eliminado.
+
+```python
+def BorrarAleatorio(lista1, lista2):
+    if lista1 and lista2:
+        indice_aleatorio = random.randint(0, min(len(lista1), len(lista2)) - 1)
+        lista1.pop(indice_aleatorio)
+        valor_eliminado = lista2[indice_aleatorio]
+        lista2.pop(indice_aleatorio)
+        return lista1,lista2,valor_eliminado
+```
 
 ### 3. Canal
 
@@ -643,6 +698,30 @@ def Binario_a_Texto(binario):
 - Parámetros: `paquete` - Lista de paquetes, `indices` - Lista de índices de paquetes, `canales` - Lista que simula canales de comunicación.
 - Retorno: Lista actualizada de canales, indicador de ruido, canal usado y el índice eliminado.
 
+```python
+def Canal(paquete,indices,canales):
+  verdad = False
+  verdad_ruido = False
+  canal_usado = None
+  indice_eliminado = None
+  for i in range(0,len(canales)):
+    if(canales[i][0] == 0):
+      verdad = True
+      canal_usado = i
+      if(random.randint(0, 1)):
+        canales[i][0] = 1
+      canales[i][1] = paquete
+      canales[i][2] = indices
+      if(canales[i][0] == 1):
+        verdad_ruido = True
+        canales[i][1], canales[i][2],indice_eliminado = BorrarAleatorio(canales[i][1],canales[i][2])
+        for j in range(0,len(canales)):
+          canales[j][0] = 0
+      break
+
+  return canales,verdad_ruido,canal_usado,indice_eliminado
+```
+
 ### Busqueda Binaria
 
 #### `BusquedaBinaria(lista_valores, buscar)`
@@ -650,8 +729,35 @@ def Binario_a_Texto(binario):
 - Parámetros: `lista_valores` - Lista ordenada, `buscar` - Valor a buscar.
 - Retorno: Índice del valor encontrado o -1 si no se encuentra.
 
+```python
+def BusquedaBinaria(lista_valores, buscar):
+    inicio = 0
+    fin = len(lista_valores) - 1
+
+    while inicio <= fin:
+        medio = (inicio + fin) // 2
+
+        if lista_valores[medio] == buscar:
+            return medio
+        if buscar < lista_valores[medio]:
+            fin = medio - 1
+        else:
+            inicio = medio + 1
+    return -1
+```
+
 #### `Ordenar(diccionario)`
 - Descripción: Ordena un diccionario por sus valores y devuelve las claves y valores ordenados.
+
+```python
+def Ordenar(diccionario):
+  claves = [str(clave) for clave in diccionario.keys()]
+  valores = [str(valor) for valor in diccionario.values()]
+  claves_y_valores = list(zip(claves, valores))
+  claves_ordenadas = [clave for clave, valor in sorted(claves_y_valores, key=lambda x: x[1])]
+  valores.sort()
+  return claves_ordenadas,valores
+```
 
 ### 4. Generar Hash
 
